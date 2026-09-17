@@ -7,3 +7,8 @@ títulos de cada zona
 calidad de imágenes e infografías
 animacion al inicio
 efecto rebote
+
+
+<iframe width="853" height="480" src="https://my.matterport.com/show/?m=p3ZYaTnMP9m" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;"></iframe>
+
+SDK key= f83h1inw9km9xwakyxqcy69dd
