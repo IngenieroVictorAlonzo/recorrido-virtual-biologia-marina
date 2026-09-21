@@ -1,20 +1,48 @@
-import { connect } from "MP_SDK";
-
-
-// ELEMENTOS DEL DOM
-
-const iframe = document.getElementById("showcase-iframe");
-
 const musica = document.getElementById("musica");
 const btnAudio = document.getElementById("btnAudio");
 const volumen = document.getElementById("volumen");
+const btnIniciar = document.getElementById("btnIniciar");
+const inicio = document.getElementById("inicio");
 
 
-// CONFIGURACIÓN DEL AUDIO
+// ------------------------------------
+// CONFIGURACIÓN INICIAL
+// ------------------------------------
 
 musica.volume = 0.4;
 
-// BOTÓN PLAY / PAUSE DEL AUDIO
+
+// ------------------------------------
+// BOTÓN "INICIAR RECORRIDO"
+// ------------------------------------
+
+btnIniciar.addEventListener("click", async () => {
+
+    try {
+
+        // Iniciar música
+        await musica.play();
+
+        btnAudio.textContent = "🔊";
+
+        // Ocultar pantalla inicial
+        inicio.classList.add("oculto");
+
+    } catch (error) {
+
+        console.error(
+            "No se pudo reproducir la música:",
+            error
+        );
+
+    }
+
+});
+
+
+// ------------------------------------
+// BOTÓN AUDIO
+// ------------------------------------
 
 btnAudio.addEventListener("click", async () => {
 
@@ -40,15 +68,14 @@ btnAudio.addEventListener("click", async () => {
         musica.pause();
 
         btnAudio.textContent = "🔇";
-
     }
 
 });
 
 
-// =====================================================
-// CONTROL DE VOLUMEN
-// =====================================================
+// ------------------------------------
+// VOLUMEN
+// ------------------------------------
 
 volumen.addEventListener("input", () => {
 
@@ -65,80 +92,3 @@ volumen.addEventListener("input", () => {
     }
 
 });
-
-
-// =====================================================
-// CONEXIÓN CON MATTERPORT
-// =====================================================
-
-async function conectarMatterport() {
-
-    try {
-
-        console.log("Conectando con Matterport...");
-
-        const mpSdk = await connect(iframe);
-
-        console.log("✅ Matterport SDK conectado");
-
-        console.log(mpSdk);
-
-
-        // EVENTOS DEL GUIDED TOUR
-
-        mpSdk.on(mpSdk.Tour.Event.STARTED, async () => {
-            console.log("▶️ Guided Tour INICIADO");
-            try {
-
-                await musica.play();
-
-                btnAudio.textContent = "🔊";
-
-                console.log("🎵 Música iniciada");
-
-            } catch (error) {
-
-                console.warn(
-                    "⚠️ El navegador bloqueó la reproducción automática.",
-                    error
-                );
-            }
-        });
-
-        mpSdk.on(mpSdk.Tour.Event.STOPPED, () => {
-            console.log("⏸️ Guided Tour DETENIDO");
-
-            musica.pause();
-
-            btnAudio.textContent = "🔇";
-        });
-
-        mpSdk.on(mpSdk.Tour.Event.ENDED, () => {
-            console.log("🏁 Guided Tour TERMINADO");
-
-            musica.pause();
-
-            btnAudio.textContent = "🔇";
-        });
-
-        mpSdk.on(mpSdk.Tour.Event.STEPPED, (activeIndex) => {
-            console.log("📍 Guided Tour paso:", activeIndex);
-        });
-
-    } catch (error) {
-
-        console.error(
-            "❌ Error conectando con Matterport SDK:",
-            error
-        );
-
-    }
-
-}
-
-
-// =====================================================
-// INICIAR
-// =====================================================
-
-conectarMatterport();
