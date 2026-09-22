@@ -17,7 +17,7 @@ musica.volume = 0.4;
 // ------------------------------------
 
 const matterportURL =
-    "https://my.matterport.com/show/?m=p3ZYaTnMP9m&qs=1&play=1&ts=3";
+    "https://my.matterport.com/show/?m=p3ZYaTnMP9m&qs=1&play=1&ts=2";
 
 
 // ------------------------------------
