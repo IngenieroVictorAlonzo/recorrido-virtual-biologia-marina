@@ -11,27 +11,25 @@
 
 <body>
     <main class="recorrido">
-        <iframe id="showcase-iframe" src="https://my.matterport.com/show/?m=p3ZYaTnMP9m&qs=1&play=1&ts=3"
-            allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen> </iframe>
+        <iframe id="showcase-iframe" allow="fullscreen; autoplay; xr-spatial-tracking" allowfullscreen> </iframe>
 
-        <!-- Pantalla inicial -->
-        <div id="inicio" class="inicio">
+        <!-- Video de introducción -->
+        <div id="intro" class="intro">
 
-            <div class="inicio-contenido">
+            <video id="videoIntro" playsinline autoplay muted>
 
-                <h1>Recorrido Virtual</h1>
+                <source src="video/sala marina horizontal.mp4" type="video/mp4">
 
-                <p>
-                    Explora el recorrido virtual de Biología Marina
-                </p>
+            </video>
 
-                <button id="btnIniciar">
-                    ▶ Iniciar recorrido
-                </button>
 
-            </div>
+            <!-- Botón para continuar -->
+            <button id="btnIniciar" class="btn-iniciar">
+                ▶ Iniciar recorrido
+            </button>
 
         </div>
+
 
         <div class="audio-control">
             <button id="btnAudio"> 🔇 </button>

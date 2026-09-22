@@ -1,8 +1,9 @@
+const iframe = document.getElementById("showcase-iframe");
 const musica = document.getElementById("musica");
 const btnAudio = document.getElementById("btnAudio");
 const volumen = document.getElementById("volumen");
 const btnIniciar = document.getElementById("btnIniciar");
-const inicio = document.getElementById("inicio");
+const intro = document.getElementById("intro");
 
 
 // ------------------------------------
@@ -11,6 +12,25 @@ const inicio = document.getElementById("inicio");
 
 musica.volume = 0.4;
 
+// ------------------------------------
+// URL DE MATTERPORT
+// ------------------------------------
+
+const matterportURL =
+    "https://my.matterport.com/show/?m=p3ZYaTnMP9m&qs=1&play=1&ts=3";
+
+
+// ------------------------------------
+// VIDEO DE INTRODUCCIÓN
+// ------------------------------------
+
+videoIntro.addEventListener("ended", () => {
+
+    console.log("🎬 Video terminado");
+
+    btnIniciar.style.display = "block";
+
+});
 
 // ------------------------------------
 // BOTÓN "INICIAR RECORRIDO"
@@ -25,13 +45,16 @@ btnIniciar.addEventListener("click", async () => {
 
         btnAudio.textContent = "🔊";
 
+          // Cargar Matterport
+        iframe.src = matterportURL;
+
         // Ocultar pantalla inicial
-        inicio.classList.add("oculto");
+        intro.classList.add("oculto");
 
     } catch (error) {
 
         console.error(
-            "No se pudo reproducir la música:",
+            "Error iniciando recorrido:",
             error
         );
 
