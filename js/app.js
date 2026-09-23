@@ -4,13 +4,35 @@ const btnAudio = document.getElementById("btnAudio");
 const volumen = document.getElementById("volumen");
 const btnIniciar = document.getElementById("btnIniciar");
 const intro = document.getElementById("intro");
+const final = document.getElementById("final");
+const btnCerrarFinal = document.getElementById("btnCerrarFinal");
 
+const DURACION_TOUR = 235000; // 3 minutos 55 segundos
+let temporizadorFinal;
 
 // ------------------------------------
 // CONFIGURACIÓN INICIAL
 // ------------------------------------
 
 musica.volume = 0.4;
+
+
+// ------------------------------------
+// ESCUCHAR MENSAJES DE MATTERPORT
+// ------------------------------------
+
+window.addEventListener("message", (event) => {
+
+    if (event.origin.includes("matterport.com")) {
+
+        console.log("📩 MENSAJE DE MATTERPORT:");
+        console.log(event.data);
+
+    }
+
+});
+
+
 
 // ------------------------------------
 // URL DE MATTERPORT
@@ -45,11 +67,17 @@ btnIniciar.addEventListener("click", async () => {
 
         btnAudio.textContent = "🔊";
 
-          // Cargar Matterport
+        // Cargar Matterport
         iframe.src = matterportURL;
 
         // Ocultar pantalla inicial
         intro.classList.add("oculto");
+
+        temporizadorFinal = setTimeout(() => {
+
+            final.classList.add("visible");
+
+        }, DURACION_TOUR);
 
     } catch (error) {
 
@@ -113,5 +141,12 @@ volumen.addEventListener("input", () => {
         btnAudio.textContent = "🔊";
 
     }
+
+});
+
+
+btnCerrarFinal.addEventListener("click", () => {
+
+    final.classList.remove("visible");
 
 });

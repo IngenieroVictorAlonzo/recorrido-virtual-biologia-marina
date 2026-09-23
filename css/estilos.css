@@ -107,3 +107,148 @@ body {
 .intro.oculto {
     display: none;
 }
+
+.final {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 20;
+
+    padding: 20px;
+}
+
+.final.visible {
+    display: flex;
+}
+
+.final-contenido {
+    position: relative;
+
+    width: min(800px, 90vw);
+    max-height: 85vh;
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+    animation: aparecerFinal 0.4s ease;
+}
+
+.final img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-height: 85vh;
+
+    object-fit: contain;
+}
+
+.btn-cerrar-final {
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    z-index: 2;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: white;
+
+    font-size: 30px;
+    line-height: 35px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-cerrar-final:hover {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+@keyframes aparecerFinal {
+
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* ------------------------------------
+   MÓVILES
+------------------------------------ */
+
+@media (max-width: 768px) {
+
+    .final {
+        padding: 15px;
+    }
+
+    .final-contenido {
+        width: 92vw;
+        max-height: 80vh;
+
+        border-radius: 10px;
+    }
+
+    .final img {
+        max-height: 80vh;
+    }
+
+    .btn-cerrar-final {
+        width: 36px;
+        height: 36px;
+
+        top: 8px;
+        right: 8px;
+
+        font-size: 27px;
+    }
+
+}
+
+.mensaje-cortesia {
+    margin: 0;
+    padding: 18px 20px 12px;
+
+    background: white;
+
+    color: #222;
+
+    text-align: center;
+
+    font-size: 20px;
+    font-weight: 600;
+}
